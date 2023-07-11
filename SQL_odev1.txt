@@ -26,6 +26,7 @@ SQL Ödev 01 | WHERE ve Karşılaştırma & Mantıksal Operatörler
 	WHERE length <= 50
 	AND NOT (rental_rate = 2.99 OR rental_rate = 4.99)
 
+------------------------------------------------------------------------------
 SQL Ödev 02 | BETWEEN ve IN
 
 1.) film tablosunda bulunan tüm sütunlardaki verileri replacement cost değeri 12.99 dan büyük eşit ve 16.99 küçük olma koşuluyla sıralayınız ( BETWEEN - AND yapısını kullanınız.)
@@ -44,7 +45,9 @@ SQL Ödev 02 | BETWEEN ve IN
 	WHERE rental_rate IN (0.99, 2.99, 4.99) 
 	AND (replacement_cost IN (12.99, 15.99, 28.99));
 
+------------------------------------------------------------------------------
 SQL Ödev 03 | LIKE ve ILIKE
+
 
 1.) country tablosunda bulunan country sütunundaki ülke isimlerinden 'A' karakteri ile başlayıp 'a' karakteri ile sonlananları sıralayınız.
 
@@ -66,7 +69,9 @@ SQL Ödev 03 | LIKE ve ILIKE
 	SELECT * FROM film 
 	WHERE title LIKE 'C%' AND length > 90 AND rental_rate = 2.99;
 
+------------------------------------------------------------------------------
 SQL Ödev 04 | DISTINCT ve COUNT
+
 
 1.) film tablosunda bulunan replacement_cost sütununda bulunan birbirinden farklı değerleri sıralayınız. 
 	
@@ -94,13 +99,29 @@ SQL Ödev 04 | DISTINCT ve COUNT
 	SELECT COUNT(city) FROM city
 	WHERE city ILIKE '%R';
 
+------------------------------------------------------------------------------
+SQL Ödev 05 | ORDER BY | LIMIT ve OFFSET
 
 
+1.) film tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en uzun (length) 5 filmi sıralayınız.
 
+	SELECT * FROM film
+	WHERE title LIKE '%n'
+	ORDER BY length DESC 
+	LIMIT 5;
 
+2.) film tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en kısa (length) ikinci(6,7,8,9,10) 5 filmi(6,7,8,9,10) sıralayınız.
 
+	SELECT * FROM film 
+	WHERE title LIKE '%n'
+	ORDER BY length 
+	OFFSET 5
+	LIMIT 5;
 
+3.) customer tablosunda bulunan last_name sütununa göre azalan yapılan sıralamada store_id 1 olmak koşuluyla ilk 4 veriyi sıralayınız.
 
-
-
+	SELECT * FROM customer 
+	WHERE store_id = 1
+	ORDER BY last_name DESC
+	limit 4;
 
