@@ -125,3 +125,220 @@ SQL Ödev 05 | ORDER BY | LIMIT ve OFFSET
 	ORDER BY last_name DESC
 	limit 4;
 
+
+------------------------------------------------------------------------------
+SQL Ödev 06 | Aggregate Fonksiyonlar
+
+
+1.) film tablosunda bulunan rental_rate sütunundaki değerlerin ortalaması nedir?
+	
+	SELECT AVG(rental_rate) FROM film;
+
+2.) film tablosunda bulunan filmlerden kaç tanesi 'C' karakteri ile başlar?
+
+	SELECT COUNT(title) FROM film
+	WHERE title LIKE 'C%';
+
+3.) film tablosunda bulunan filmlerden rental_rate değeri 0.99 a eşit olan en uzun (length) film kaç dakikadır?
+	
+	
+	SELECT MAX(length) FROM film
+	WHERE rental_rate = 0.99;
+
+4.) film tablosunda bulunan filmlerin uzunluğu 150 dakikadan büyük olanlarına ait kaç farklı replacement_cost değeri vardır?
+
+
+	
+	SELECT COUNT(DISTINCT replacement_cost) FROM film
+	WHERE length >150 ;
+
+
+-------------------------------------------------------------------
+
+SQL Ödev 07 | GROUP BY | HAVING
+
+1.) film tablosunda bulunan filmleri rating değerlerine göre gruplayınız.
+
+
+	SELECT COUNT(*) FROM film
+	GROUP BY rating;
+
+
+2.) film tablosunda bulunan filmleri replacement_cost sütununa göre grupladığımızda film sayısı 50 den fazla olan replacement_cost değerini ve karşılık gelen film sayısını sıralayınız.
+
+	SELECT replacement_cost, COUNT(*) FROM film
+	GROUP BY replacement_cost
+	HAVING COUNT (*) >50;
+	
+
+3.) customer tablosunda bulunan store_id değerlerine karşılık gelen müşteri sayılarını nelerdir?
+
+	SELECT store_id, COUNT(*) FROM customer 
+	GROUP BY store_id;
+
+4.) city tablosunda bulunan şehir verilerini country_id sütununa göre gruplandırdıktan sonra en fazla şehir sayısı barındıran country_id bilgisini ve şehir sayısını paylaşınız.
+
+	SELECT country_id, COUNT(*) FROM city
+	GROUP BY country_id
+	ORDER BY COUNT(*) DESC
+	LIMIT 1;
+
+--------------------------------------------------------------------
+
+SQL Ödev 08 | Tablo Oluşturmak | Verileri Güncellemek"
+
+
+1.) test veritabanınızda employee isimli sütun bilgileri id(INTEGER), name VARCHAR(50), birthday DATE, email VARCHAR(100) olan bir tablo oluşturalım.
+
+
+CREATE TABLE employee (
+  id INTEGER,
+  name VARCHAR(50) NOT NULL,
+  birthday DATE,
+  email VARCHAR(100)
+);
+
+
+
+
+2.) Oluşturduğumuz employee tablosuna 'Mockaroo' servisini kullanarak 50 adet veri ekleyelim.
+
+
+insert into MOCK_DATA (id, name, birthday, email) values (1, 'Cobb', '1939/11/04', 'ckunert0@joomla.org');
+insert into MOCK_DATA (id, name, birthday, email) values (2, 'Martina', '1953/09/19', null);
+insert into MOCK_DATA (id, name, birthday, email) values (3, 'Alica', '1996/09/26', 'atilio2@wp.com');
+insert into MOCK_DATA (id, name, birthday, email) values (4, 'Arnold', null, 'amarcroft3@dion.ne.jp');
+insert into MOCK_DATA (id, name, birthday, email) values (5, 'Lanae', '1974/07/08', 'ldenziloe4@sourceforge.net');
+insert into MOCK_DATA (id, name, birthday, email) values (6, 'Stephie', '1919/04/02', null);
+insert into MOCK_DATA (id, name, birthday, email) values (7, 'Cordelie', '1982/03/26', null);
+insert into MOCK_DATA (id, name, birthday, email) values (8, 'Shelby', '1931/07/29', null);
+insert into MOCK_DATA (id, name, birthday, email) values (9, 'Celka', '1901/04/12', 'crulton8@fc2.com');
+insert into MOCK_DATA (id, name, birthday, email) values (10, 'Mordecai', '1902/12/18', 'mlassen9@google.com');
+insert into MOCK_DATA (id, name, birthday, email) values (11, 'Maria', '1930/10/22', 'mellesa@ucoz.com');
+insert into MOCK_DATA (id, name, birthday, email) values (12, 'Ichabod', '1992/05/14', 'ievensdenb@1688.com');
+insert into MOCK_DATA (id, name, birthday, email) values (13, 'Curran', null, null);
+insert into MOCK_DATA (id, name, birthday, email) values (14, 'Yelena', '1926/09/28', 'yserckd@home.pl');
+insert into MOCK_DATA (id, name, birthday, email) values (15, 'Yorke', '1915/07/09', 'yreaneye@lycos.com');
+insert into MOCK_DATA (id, name, birthday, email) values (16, 'Allina', '1939/09/26', 'aburkwoodf@free.fr');
+insert into MOCK_DATA (id, name, birthday, email) values (17, 'Jermaine', null, null);
+insert into MOCK_DATA (id, name, birthday, email) values (18, 'Oliviero', '1903/11/20', 'oohickeyh@mapy.cz');
+insert into MOCK_DATA (id, name, birthday, email) values (19, 'Emelyne', '1917/03/11', 'eferreirai@quantcast.com');
+insert into MOCK_DATA (id, name, birthday, email) values (20, 'Julissa', '1985/09/22', null);
+insert into MOCK_DATA (id, name, birthday, email) values (21, 'Myrna', '1944/03/27', 'mjagelsk@ihg.com');
+insert into MOCK_DATA (id, name, birthday, email) values (22, 'Francisco', '1962/04/24', null);
+insert into MOCK_DATA (id, name, birthday, email) values (23, 'Shep', '1933/12/27', 'scuttlerm@edublogs.org');
+insert into MOCK_DATA (id, name, birthday, email) values (24, 'Ursulina', '1988/08/22', 'umallinsonn@hp.com');
+insert into MOCK_DATA (id, name, birthday, email) values (25, 'Stearn', '1942/11/01', 'sdedricko@flickr.com');
+insert into MOCK_DATA (id, name, birthday, email) values (26, 'Normy', '1981/08/26', 'nbrecherp@barnesandnoble.com');
+insert into MOCK_DATA (id, name, birthday, email) values (27, 'Amalia', '1977/11/29', null);
+insert into MOCK_DATA (id, name, birthday, email) values (28, 'Paulette', '1976/09/10', 'plotsr@stumbleupon.com');
+insert into MOCK_DATA (id, name, birthday, email) values (29, 'Brietta', '1915/10/25', 'bcordss@t-online.de');
+insert into MOCK_DATA (id, name, birthday, email) values (30, 'Cassandry', '1999/05/23', null);
+insert into MOCK_DATA (id, name, birthday, email) values (31, 'Hercule', '1972/10/13', 'hmumu@hao123.com');
+insert into MOCK_DATA (id, name, birthday, email) values (32, 'Bram', null, 'bbortolv@cisco.com');
+insert into MOCK_DATA (id, name, birthday, email) values (33, 'Briano', '1923/01/08', null);
+insert into MOCK_DATA (id, name, birthday, email) values (34, 'Peadar', '1951/03/15', 'pcordreyx@narod.ru');
+insert into MOCK_DATA (id, name, birthday, email) values (35, 'Elfreda', '1990/11/10', 'ephilippsony@cam.ac.uk');
+insert into MOCK_DATA (id, name, birthday, email) values (36, 'Tybalt', '1943/08/14', 'tkennetz@blinklist.com');
+insert into MOCK_DATA (id, name, birthday, email) values (37, 'Jarib', '1910/10/22', 'jofer10@wordpress.org');
+insert into MOCK_DATA (id, name, birthday, email) values (38, 'Godwin', '1953/12/27', 'gashbe11@nytimes.com');
+insert into MOCK_DATA (id, name, birthday, email) values (39, 'Garvy', '1919/08/16', 'ggiffaut12@squidoo.com');
+insert into MOCK_DATA (id, name, birthday, email) values (40, 'Shawn', '1984/07/07', null);
+insert into MOCK_DATA (id, name, birthday, email) values (41, 'Gill', '1950/04/10', null);
+insert into MOCK_DATA (id, name, birthday, email) values (42, 'Ambrosi', null, 'aludovico15@netscape.com');
+insert into MOCK_DATA (id, name, birthday, email) values (43, 'Constantin', null, 'cbasilone16@clickbank.net');
+insert into MOCK_DATA (id, name, birthday, email) values (44, 'Van', '1989/06/22', 'vdigwood17@odnoklassniki.ru');
+insert into MOCK_DATA (id, name, birthday, email) values (45, 'Dugald', '1931/12/17', 'dlashbrook18@trellian.com');
+insert into MOCK_DATA (id, name, birthday, email) values (46, 'Francklyn', '1930/02/05', null);
+insert into MOCK_DATA (id, name, birthday, email) values (47, 'Ring', null, 'rthiolier1a@examiner.com');
+insert into MOCK_DATA (id, name, birthday, email) values (48, 'Quentin', '1947/09/20', null);
+insert into MOCK_DATA (id, name, birthday, email) values (49, 'Lurleen', '1978/06/01', 'lbegley1c@quantcast.com');
+insert into MOCK_DATA (id, name, birthday, email) values (50, 'Clarke', '1925/10/18', null);
+
+
+
+
+3.) Sütunların her birine göre diğer sütunları güncelleyecek 5 adet UPDATE işlemi yapalım.
+
+
+// İsim (name) sütununu güncellemek:
+
+UPDATE employee
+SET name = 'John Doe'
+WHERE name = 'Coob';
+
+
+// Doğum günü (birthday) sütununu güncellemek:
+
+UPDATE employee
+SET birthday = '1990-06-15'
+WHERE email = 'yserckd@home.pl';
+
+
+// E-posta (email) sütununu güncellemek:
+
+UPDATE employee
+SET email = 'johndoe@example.com'
+WHERE birthday = '1950/04/10';
+
+
+// İsim ve doğum günü sütunlarını güncellemek:
+
+UPDATE employee
+SET name = 'Jane Smith',
+    birthday = '1985-03-20'
+WHERE id = 4;
+
+
+// Tüm sütunları güncellemek:
+
+UPDATE employee
+SET name = 'Robert Johnson',
+    birthday = '1978-12-10',
+    email = 'robertjohnson@example.com'
+WHERE id = 5;
+
+
+
+
+
+4.) Sütunların her birine göre ilgili satırı silecek 5 adet DELETE işlemi yapalım.
+
+
+DELETE FROM employee
+WHERE id = 44;
+
+DELETE FROM employee
+WHERE name ='Constantin';
+
+DELETE FROM employee
+WHERE name = 'Jane Smith' AND birthday = '1985-03-20';
+
+DELETE FROM employee
+WHERE email = 'umallinsonn@hp.com';
+
+DELETE FROM employee
+WHERE id >5
+RETURNING *;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
